@@ -54,3 +54,11 @@ def upload_file():
       <p><input type=file name=file><input type=submit value=Upload>
     </form>
     """
+
+# Receive and verify the job question fetching request
+@app.route("/job", methods=["POST"])
+def job():
+    data = request.get_json()
+    if data["question"] == "What is the meaning of life?":
+        return jsonify(answer=42)
+    return jsonify(answer="unknown question")
