@@ -56,7 +56,15 @@ def upload_file():
     """
 
 # Receive and verify the job question fetching request
-@app.route("/job", methods=["POST"])
+@app.route("/job/question", methods=["POST"])
+def job():
+    data = request.get_json()
+    if data["question"] == "What is the meaning of life?":
+        return jsonify(answer=42)
+    return jsonify(answer="unknown question")
+
+# Receive and verify the job application filling request
+@app.route("/job/application", methods=["POST"])
 def job():
     data = request.get_json()
     if data["question"] == "What is the meaning of life?":
